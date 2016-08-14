@@ -7,7 +7,9 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MainClass extends JavaPlugin 
@@ -19,16 +21,19 @@ public class MainClass extends JavaPlugin
 		Bukkit.getPluginManager().registerEvents(new EventListener(), this);
 		EventListener._main = this;
 		
-		CraftedSaddle();
-		CraftedIronHorseArmor();
-		CraftedGoldHorseArmor();
-		CraftedDiamondHorseArmor();
-		CraftedElytra();
+		CraftSaddle();
+		CraftIronHorseArmor();
+		CraftGoldHorseArmor();
+		CraftDiamondHorseArmor();
+		CraftElytra();
+		CraftNameTag();
+		CraftGrass();
+		CraftMycelium();
 		
 		getLogger().info("[Linguisticraft] Plugin is ready !");
 	}
 	
-	void CraftedSaddle()
+	void CraftSaddle()
 	{
 		ItemStack saddle = new ItemStack(Material.SADDLE, 1);
 		ItemMeta saddleMeta = saddle.getItemMeta();
@@ -45,7 +50,7 @@ public class MainClass extends JavaPlugin
 	
 	}
 	
-	void CraftedIronHorseArmor()
+	void CraftIronHorseArmor()
 	{
 		ItemStack ironHorseArmor = new ItemStack(Material.IRON_BARDING, 1);
 		ItemMeta ironHorseArmorMeta = ironHorseArmor.getItemMeta();
@@ -64,7 +69,7 @@ public class MainClass extends JavaPlugin
 		Bukkit.getServer().addRecipe(ironHorseArmorRecipe);
 	}
 	
-	void CraftedGoldHorseArmor()
+	void CraftGoldHorseArmor()
 	{
 		ItemStack goldHorseArmor = new ItemStack(Material.GOLD_BARDING, 1);
 		ItemMeta goldHorseArmorMeta = goldHorseArmor.getItemMeta();
@@ -83,7 +88,7 @@ public class MainClass extends JavaPlugin
 		Bukkit.getServer().addRecipe(goldHorseArmorRecipe);
 	}
 	
-	void CraftedDiamondHorseArmor()
+	void CraftDiamondHorseArmor()
 	{
 		ItemStack diamondHorseArmor = new ItemStack(Material.DIAMOND_BARDING, 1);
 		ItemMeta diamondHorseArmorMeta = diamondHorseArmor.getItemMeta();
@@ -102,7 +107,7 @@ public class MainClass extends JavaPlugin
 		Bukkit.getServer().addRecipe(diamondHorseArmorRecipe);
 	}
 	
-	void CraftedElytra()
+	void CraftElytra()
 	{
 		ItemStack elytra = new ItemStack(Material.ELYTRA, 1);
 		ItemMeta elytraMeta = elytra.getItemMeta();
@@ -120,6 +125,55 @@ public class MainClass extends JavaPlugin
 		Bukkit.getServer().addRecipe(elytraRecipe);
 	}
 	
+	void CraftNameTag()
+	{
+		ItemStack tag = new ItemStack(Material.NAME_TAG, 1);
+		ItemMeta tagMeta = tag.getItemMeta();
+		tagMeta.setDisplayName("Crafted Name Tag");
+		tag.setItemMeta(tagMeta);
+		
+		ShapedRecipe tagRecipe = new ShapedRecipe(tag);
+		tagRecipe.shape( "  ~",
+						 " # ",
+						 "#S ");
+		tagRecipe.shape( "~  ",
+				 		 " # ",
+				 		 " S#");
+		tagRecipe.setIngredient('~', Material.STRING);
+		tagRecipe.setIngredient('#', Material.PAPER);
+		tagRecipe.setIngredient('S', Material.SIGN);
+		Bukkit.getServer().addRecipe(tagRecipe);
+	}
+	
+	@SuppressWarnings("deprecation")
+	void CraftGrass()
+	{
+		ShapelessRecipe grassRecipe = new ShapelessRecipe(new ItemStack(Material.GRASS, 1));
+		grassRecipe.addIngredient(Material.DIRT);
+		grassRecipe.addIngredient(new MaterialData(Material.LONG_GRASS, (byte) 1));
+		Bukkit.getServer().addRecipe(grassRecipe);
+	}
+	
+	void CraftMycelium()
+	{
+		ShapedRecipe myceliumRecipe = new ShapedRecipe(new ItemStack(Material.MYCEL, 1));
+		
+		myceliumRecipe.shape( "BRB",
+							  "RGR",
+							  "BRB");
+		myceliumRecipe.setIngredient('B', Material.BROWN_MUSHROOM);
+		myceliumRecipe.setIngredient('R', Material.RED_MUSHROOM);
+		myceliumRecipe.setIngredient('G', Material.GRASS);
+		Bukkit.getServer().addRecipe(myceliumRecipe);
+		
+		myceliumRecipe.shape( "RBR",
+	 			 			  "BGB",
+	 			 			  "RBR");
+		myceliumRecipe.setIngredient('B', Material.BROWN_MUSHROOM);
+		myceliumRecipe.setIngredient('R', Material.RED_MUSHROOM);
+		myceliumRecipe.setIngredient('G', Material.GRASS);
+		Bukkit.getServer().addRecipe(myceliumRecipe);
+	}
 	
 	
 	
