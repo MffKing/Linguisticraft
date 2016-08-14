@@ -1,5 +1,6 @@
-main: com.mff.mRP.MainClass
+main: com.mff.Linguisticraft.MainClass
 name: Linguisticraft
-version: 0.1
-description: Un petit plugin pour améliorer l'expérience de jeu sur le serveur de Linguisticae :)
+version: 0.1.1
+description: GLOIRE AU TENGRIARCHE !
 author: MffKing
+
